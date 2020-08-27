@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Coin Flip Game</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./web3.min.js"></script>
+    <script type="text/javascript" src="./abi.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <link rel="stylesheet" href="./adminlte.min.css">
+ <link rel="stylesheet" href="./css/main.css">
+
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="./css/custom-modal.css">
+    <link rel="stylesheet" href="./css/ion.rangeSlider.min.css">
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Coin Flip Dapp</h1>
+        <p class="lead">Can you win back your own ETH?</p>
+      </div>
+    </div>
+    <div class="container">
+       
+<div class="row">
+ <div class="col-md-3">
+            <div class="card card-primary" id="playerwin" >
+              <div class="card-header">
+                <h3 class="card-title" id="playertitle"></h3>
+
+               
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"  >
+                  <span id="playeramount" >Ready To Play</span>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+    <div class="col-md-1"></div>
+          <!-- /.col -->
+<div class="col-lg-3 col-3">
+    
+    
+    <div class="alert alert-warning ">
+                 
+                  <h5>Result: </h5>
+                  <span id="result"></span>
+                </div>
+        
+        <button type="button" id="Tails" class="btn btn-primary">Tails</button>
+    <button type="button" id="Heads"  class="btn btn-info">Heads</button>
+    <span >&nbsp;</span>
+</div>
+          <!-- ./col -->
+<div class="col-md-1"></div>
+<div class="col-md-3">
+    <div class="card card-danger" id="housewin"  >
+      <div class="card-header">
+        <h3 class="card-title" id="housetitle"></h3>
+
+
+        <!-- /.card-tools -->
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body" id="houseamount">
+        Ready To Play
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col -->
+</div>
+        <div class="row">
+            
+          <div class="col-12 col-sm-3">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span class="info-box-text text-center text-muted">Player Balance <i class="fa fa-address-book" aria-hidden="true"></i></span>
+                      
+                      <span style="text-align:center;"><h2 id="player_bal">0 </h2><h4 style="text-align:center;">ETH</h4></span>
+                    </div>
+                  </div>
+                    <div class="col-sm-12">
+                    <input id="range_5" type="text" name="range_5" value="">
+                  </div>
+              <br>
+                  <button type="button" id="AddToBet"  class="btn btn-info">Add To Bet</button>
+
+              
+                </div>   
+            <div class="col-md-1"></div>
+
+         <div class="col-lg-3 col-3">
+                        <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+
+
+                <h3 id="potbal">0</h3>
+
+                <p>Eth in the pot.</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+            </div>
+            
+                        <div class="col-md-4">
+                            
+                            
+                            
+                        </div> 
+        </div>
+                        <div class="col-md-1"></div>
+                                 <div class="col-12 col-sm-3">
+                  <div class="info-box bg-light">
+
+                    <div class="info-box-content">
+                      <span class="info-box-text text-center text-muted"> <i class="fa fa-university" aria-hidden="true"></i> Contract Balance</span>
+                      <span style="text-align:center;" ><h2 id="contractbal">0</h2><h4 style="text-align:center;">ETH</h4></span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-default" id="refund" >Withdraw Funds</button>
+
+                </div> 
+
+       </div>
+
+
+        <div id="win-modal" class="custom-modal" >
+            <img src="heads.png" style="width:200px;"/>
+        </div>     
+        
+        <div id="lose-modal" class="custom-modal" >
+            <img src="tails.png" style="width:200px;"/>
+        </div>  
+      
+<!-- The Modal -->
+<div id="custom-Modal" class="custom-modal">
+
+  <!-- Modal content -->
+  <div  class="custom-modal-content">
+    <span class="close" onclick="closeModal();">&times;</span>
+        <div class="modal-header">
+        <h3  id="login-title" class="card-title">Initial Setup</h3>
+        </div>
+            <form id="login-form" onsubmit="return false" >
+            <input id="login-token" type="hidden" value="" />
+            <input type="hidden" name="Target" value="login" />
+            <div class="modal-body">
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" placeholder="Contract Address" id="contract-address" name="contract-address">
+                  </div>
+
+                 
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" onclick="closeModal();" >Close</button>
+              <button type="button" class="btn btn-default" id="save" >Fund Contract</button>
+            </div>
+            </form>
+  </div>
+
+</div>
+<!-- The Modal -->
+
+<script src="./adminlte.min.js"></script>
+<script src="./ion.rangeSlider.min.js"></script>
+
+  </body>
+</html>
