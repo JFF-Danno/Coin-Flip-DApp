@@ -1,2 +1,2 @@
 # Coin-Flip-DApp
-Create as part of Ethereum Smart Contract Programming from Ivan On Tech Academy
+Created as part of Ethereum Smart Contract Programming201 from Ivan On Tech Academy
